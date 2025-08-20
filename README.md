@@ -2,6 +2,9 @@
 
 A production-ready demo with **Spring Boot (Java 17, Gradle)** and **React (Vite + Tailwind)**.  
 Both services are dockerized and run with a single `docker-compose up`.
+![Screenshot 2025-08-21 at 12.47.04 AM.png](../../Desktop/Screenshot%202025-08-21%20at%2012.47.04%E2%80%AFAM.png)
+
+![Screenshot 2025-08-21 at 12.47.20 AM.png](../../Desktop/Screenshot%202025-08-21%20at%2012.47.20%E2%80%AFAM.png)
 
 ---
 
