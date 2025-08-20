@@ -35,9 +35,6 @@ public class TVShowService {
     private final TvShowDetailsFetcherFactory factory;
     private final AppConfigs appConfigs;
 
-    @Value("${app.configs.tvtitles-path:tvtitles.txt}")
-    private String tvTitlesPath;
-
     @Autowired
     public TVShowService(TVShowRepository repository, ValidationService validationService,
                          TVShowMapper tvShowMapper,
@@ -87,22 +84,22 @@ public class TVShowService {
             return null;
         }
 
-        ITvShowDetailsFetcher dataFetcher = factory.getShowFetcher(appConfigs.getFetchStrategy());
+        ATvShowDetailsFetcher dataFetcher = factory.getShowFetcher(appConfigs.getFetchStrategy());
         return dataFetcher.importTvShowDataFromTitles(titles);
 
     }
 
     public AppResponse importShowDataFromTitles() {
-        log.debug("Starting import of TV shows from titles at path: {}", tvTitlesPath);
-        if (!validationService.isValidTvShowTitlePath(tvTitlesPath)) {
-            log.error("Invalid TV titles path: {}", tvTitlesPath);
-            throw new TvShowExternalDataFetchException("Import failed: Invalid TV titles path: " + tvTitlesPath);
+        log.debug("Starting import of TV shows from titles at path: {}", appConfigs.getTvTitlesPath());
+        if (!validationService.isValidTvShowTitlePath(appConfigs.getTvTitlesPath())) {
+            log.error("Invalid TV titles path: {}", appConfigs.getTvTitlesPath());
+            throw new TvShowExternalDataFetchException("Import failed: Invalid TV titles path: " + appConfigs.getTvTitlesPath());
         }
-        ClassPathResource resource = new ClassPathResource(tvTitlesPath);
+        ClassPathResource resource = new ClassPathResource(appConfigs.getTvTitlesPath());
         try (InputStream inputStream = resource.getInputStream()) {
             return importFromTitles(inputStream);
         } catch (IOException ioe) {
-            log.error("Error reading TV titles from resource '{}': {}", tvTitlesPath, ioe.getMessage());
+            log.error("Error reading TV titles from resource '{}': {}", appConfigs.getTvTitlesPath(), ioe.getMessage());
             throw new TvShowExternalDataFetchException("Import failed: " + ioe.getMessage(), ioe);
         } catch (Exception e) {
             log.error("Error importing TV shows from titles: {}", e.getMessage());

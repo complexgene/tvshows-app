@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service("BatchedShowDetailsFetcher")
 @Slf4j
-public class BatchedShowDetailsFetcher extends ITvShowDetailsFetcher {
+public class BatchedShowDetailsFetcher extends ATvShowDetailsFetcher {
 
     @Autowired
     public BatchedShowDetailsFetcher(TvShowDetailsFetcherFactory factory) {

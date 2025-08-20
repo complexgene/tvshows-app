@@ -14,7 +14,7 @@ import java.util.concurrent.Executor;
 
 @Service
 @Slf4j
-public abstract class ITvShowDetailsFetcher {
+public abstract class ATvShowDetailsFetcher {
     @Autowired protected Executor importExecutor; // bounded pool for parallelism
     @Autowired protected HttpCallService httpCallService;
     @Autowired protected TVShowRepository repository;

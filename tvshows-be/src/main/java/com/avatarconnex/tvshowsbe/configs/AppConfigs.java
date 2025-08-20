@@ -12,4 +12,7 @@ public class AppConfigs {
     @Value("${app.data.fetch-strategy}")
     FetchStrategy fetchStrategy;
 
+    @Value("${app.configs.tvtitles-path:tvtitles.txt}")
+    private String tvTitlesPath;
+
 }

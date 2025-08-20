@@ -7,13 +7,13 @@ import java.util.Map;
 
 @Service
 public class TvShowDetailsFetcherFactory {
-    Map<FetchStrategy, ITvShowDetailsFetcher> iTvShowDetailsFetcherMap = new HashMap<>();
+    Map<FetchStrategy, ATvShowDetailsFetcher> iTvShowDetailsFetcherMap = new HashMap<>();
 
-    void register(ITvShowDetailsFetcher iTvShowDetailsFetcher) {
+    void register(ATvShowDetailsFetcher iTvShowDetailsFetcher) {
         iTvShowDetailsFetcherMap.put(iTvShowDetailsFetcher.getStrategy(), iTvShowDetailsFetcher);
     }
 
-    ITvShowDetailsFetcher getShowFetcher(FetchStrategy fetchStrategy) {
+    ATvShowDetailsFetcher getShowFetcher(FetchStrategy fetchStrategy) {
         return iTvShowDetailsFetcherMap.get(fetchStrategy);
     }
 }

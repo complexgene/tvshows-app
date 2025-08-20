@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("SingleThreadShowDetailsFetcher")
-public class SingleThreadShowDetailsFetcher extends ITvShowDetailsFetcher {
+public class SingleThreadShowDetailsFetcher extends ATvShowDetailsFetcher {
 
     @Autowired
     public SingleThreadShowDetailsFetcher(TvShowDetailsFetcherFactory factory) {

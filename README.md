@@ -26,10 +26,10 @@ docker compose up --build
 
 Base URL: `http://localhost:5665/v1`
 
-- `GET  /v1/health` → Returns a simple health check response from `HealthController`.
-- `GET  /v1/api/shows?page={page}&size={size}` → Returns a paginated list of shows. Response is a list of `ShowListItemDto` with metadata.
-- `GET  /v1/api/shows/{id}` → Returns detailed information about a single show (`ShowDetailsDto`).
-- `POST /v1/api/shows/import` → Reads the given file of titles and fetched the data extrnally and saves it in H2 DB.
+- `GET  /health` → Returns a simple health check response from `HealthController`.
+- `GET  /api/shows?page={page}&size={size}` → Returns a paginated list of shows. Response is a list of `ShowListItemDto` with metadata.
+- `GET  /api/shows/{id}` → Returns detailed information about a single show (`ShowDetailsDto`).
+- `POST /api/shows/import` → Reads the given file of titles and fetched the data extrnally and saves it in H2 DB.
 
 ## Assumptions & Decisions
 
@@ -46,14 +46,21 @@ Base URL: `http://localhost:5665/v1`
 - Used spring boot framework in the backend. 
 
 ## Extra Features
-- Exception handling & created one sample exception to demostrate excpetion management throughout.
-- Different logging levels based on the severity
+- Exception handling, custom exceptions & global exeption handler for exception management.
+  {
+    "code": 502,
+    "status": "error",
+    "message": "Import failed: ExecutorService in active state did not accept task: java.util.concurrent.CompletableFuture$AsyncRun@3870a9db",
+    "errorType": "TvShowExternalDataFetchException",
+    "path": "/v1/api/shows/import",
+    "timestamp": 1755715268142
+  }
+- Different logging levels based on the severity(INFO, DEBUG, ERROR).
 - added swagger open api integration for easy api access on http://localhost:5665/v1/swagger-ui/
 - Since movie list can be large and details for them can be fetched in parallel, have used multi threading.
 - On a similar note when fetching since the fetched list could be very large we have used Pagenation in the list api.
 - Have added strategy factory patterns to plugin different ways(managed via configs) to fetch data due to large list.
     - SINGLE THREAD : All the calls happen on a single thread, not very efficient
-    - POOLED : Calling using pool based multi threads to parallely make the call, can cause issue as all thread might get occupied
     - BATCHED : Make a batch call, efficient as we don't do unbounded thread allocation, and happens on a specific set
 
 

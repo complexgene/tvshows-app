@@ -9,7 +9,7 @@ export default function App() {
             <header className="border-b border-slate-200">
                 <div className="mx-auto max-w-7xl px-4">
                     <div className="h-14 flex items-center">
-                        <Link to="/" className="text-lg font-bold">tvmazev2</Link>
+                        <Link to="/" className="text-lg font-bold">TVMAZE-V2</Link>
                     </div>
                 </div>
             </header>
