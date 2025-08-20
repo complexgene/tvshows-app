@@ -13,7 +13,7 @@ export default function ShowsList() {
     let cancelled = false;
     setLoading(true);
     api
-      .get(`/api/shows?page=${page}&size=${size}&sort=name,asc`)
+      .get(`/api/shows/paged?page=${page}&size=${size}&sort=name,asc`)
       .then((res) => {
         if (cancelled) return;
         // Support Spring Page JSON or plain array
