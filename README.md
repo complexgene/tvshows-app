@@ -20,15 +20,16 @@ Both services are dockerized and run with a single `docker-compose up`.
 docker compose up --build
 # FE: http://localhost:3000
 # BE: http://localhost:5665/v1
+# Swagger: http://localhost:5665/v1/swagger-ui
 
 ## API Endpoints
 
 Base URL: `http://localhost:5665/v1`
 
-- `GET /v1/health` → Returns a simple health check response from `HealthController`.
-- `GET /v1/api/shows?page={page}&size={size}` → Returns a paginated list of shows. Response is a list of `ShowListItemDto` with metadata.
-- `GET /v1/api/shows/{id}` → Returns detailed information about a single show (`ShowDetailsDto`).
-- `GET /v1/api/shows/search?q={query}&page={page}&size={size}` (if enabled) → Searches shows by query.
+- `GET  /v1/health` → Returns a simple health check response from `HealthController`.
+- `GET  /v1/api/shows?page={page}&size={size}` → Returns a paginated list of shows. Response is a list of `ShowListItemDto` with metadata.
+- `GET  /v1/api/shows/{id}` → Returns detailed information about a single show (`ShowDetailsDto`).
+- `POST /v1/api/shows/import` → Reads the given file of titles and fetched the data extrnally and saves it in H2 DB.
 
 ## Assumptions & Decisions
 
