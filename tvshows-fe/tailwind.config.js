@@ -3,7 +3,7 @@
 export default {
     theme: {
         extend: {
-            colors: { tvmazeTeal: '#5ca49a' },
+            colors: { tvmazev2Teal: '#5ca49a' },
             fontFamily: { sans: ['Inter','system-ui','Segoe UI','Roboto','Arial','sans-serif'] },
         },
     },

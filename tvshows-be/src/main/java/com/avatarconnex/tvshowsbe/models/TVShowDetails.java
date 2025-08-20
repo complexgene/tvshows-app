@@ -14,7 +14,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TVShowDetails {
 
-    /** TVMaze show id */
+    /** tvmazev2 show id */
     @Id
     private Long id;
 

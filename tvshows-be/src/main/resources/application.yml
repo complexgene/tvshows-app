@@ -27,7 +27,17 @@ server:
     context-path: /v1
 
 app:
-  tvmaze:
+  tvmazev2:
     base-url: http://api.tvmaze.com
   configs:
-    tvtitles-path: tvtitles2.txt
+    tvtitles-path: tvtitles.txt
+  data:
+    fetch-strategy: BATCHED
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+  api-docs:
+    path: /api-docs
+

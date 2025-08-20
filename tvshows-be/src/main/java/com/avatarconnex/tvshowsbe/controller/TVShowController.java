@@ -36,7 +36,13 @@ public class TVShowController {
 
     @PostMapping("/import")
     public ResponseEntity<AppResponse> importTvShows() {
-        AppResponse appResponse = tvShowService.importTvShowDataFromTitles();
+        AppResponse appResponse = tvShowService.importShowDataFromTitles();
         return ResponseEntity.ok(appResponse);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TVShowDetails> getAllTvShowsPaged(@PathVariable("id") Long showId) {
+        TVShowDetails tvShowDetails = tvShowService.fetchShowDetail(showId);
+        return ResponseEntity.ok(tvShowDetails);
     }
 }

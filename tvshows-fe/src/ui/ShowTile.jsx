@@ -19,11 +19,13 @@ export default function ShowTile({ show }) {
                 )}
 
                 {/* Title */}
-                <div className="px-3 py-3">
-                    <div className="font-semibold truncate" title={show.name}>
+                <div className="px-3 py-3 bg-[#5ca49a]">
+                    <div className="font-semibold  truncate" title={show.name}>
                         {show.name}
                     </div>
                 </div>
+
+                <div className="border-b border-slate-200" />
 
                 {/* Teal footer (heart + rating) */}
                 <div className="flex items-center justify-between bg-[#5ca49a] text-white px-3 py-2">
