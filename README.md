@@ -71,4 +71,4 @@ Base URL: `http://localhost:5665/v1`
     - SINGLE THREAD : All the calls happen on a single thread, not very efficient
     - BATCHED : Make a batch call, efficient as we don't do unbounded thread allocation, and happens on a specific set
 
--- Thank you --
+-- Thank you | Made by: SANTANU NASKAR --
