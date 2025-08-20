@@ -21,9 +21,11 @@ Both services are dockerized and run with a single `docker-compose up`.
 ```bash
 # from repo root
 docker compose up --build
-# FE: http://localhost:3000
-# BE: http://localhost:5665/v1
-# Swagger: http://localhost:5665/v1/swagger-ui
+
+Once this is successful, you would have
+# FE(Frontend)  : http://localhost:3000
+# BE(Backend)   : http://localhost:5665/v1
+# Swagger       : http://localhost:5665/v1/swagger-ui
 
 ## API Endpoints
 
@@ -38,7 +40,7 @@ Base URL: `http://localhost:5665/v1`
 
 - Using **Gradle** (not Maven) as the build tool.
 - Backend runs on port `5665` with context path `/v1`.
-- Database is **in-memory H2** for demo purposes; no external DB setup required.
+- Database used is **in-memory H2** for demo purposes; no external DB setup required.
 - Docker Compose runs both backend and frontend containers on a shared network.
 - Frontend uses Vite proxy to forward `/v1/api` calls to the backend service.
 - Healthcheck uses `/v1/health` endpoint for simplicity instead of Actuator.
