@@ -1,6 +1,7 @@
 package com.avatarconnex.tvshowsbe.service;
 
 import com.avatarconnex.tvshowsbe.configs.AppConfigs;
+import com.avatarconnex.tvshowsbe.exceptions.ErrorCodes;
 import com.avatarconnex.tvshowsbe.exceptions.TvShowExternalDataFetchException;
 import com.avatarconnex.tvshowsbe.mapper.TVShowMapper;
 import com.avatarconnex.tvshowsbe.models.AppResponse;
@@ -103,7 +104,7 @@ public class TVShowService {
             throw new TvShowExternalDataFetchException("Import failed: " + ioe.getMessage(), ioe);
         } catch (Exception e) {
             log.error("Error importing TV shows from titles: {}", e.getMessage());
-            throw new TvShowExternalDataFetchException("Import failed: " + e.getMessage(), e);
+            throw new TvShowExternalDataFetchException(ErrorCodes.ER101, e);
         }
     }
 

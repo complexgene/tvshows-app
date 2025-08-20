@@ -52,6 +52,7 @@ Base URL: `http://localhost:5665/v1`
 
 ## Extra Features
 - Exception handling, custom exceptions & global exeption handler for exception management.
+  Also added sample error code to show ease of error management & contracts.
   {
     "code": 502,
     "status": "error",
