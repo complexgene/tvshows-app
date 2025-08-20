@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: tvshows-be
+  datasource:
+    url: jdbc:h2:mem:tvshowsdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update   # create / update schema automatically
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+logging:
+  level:
+    org.hibernate.SQL: ERROR
+server:
+  port: 5665
+  servlet:
+    context-path: /v1
+
+app:
+  tvmaze:
+    base-url: http://api.tvmaze.com
+  configs:
+    tvtitles-path: tvtitles2.txt

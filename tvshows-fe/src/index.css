@@ -1,0 +1,5 @@
+/* src/index.css */
+@import "tailwindcss";        /* v4: includes preflight + utilities */
+
+/* your custom styles below if needed */
+html, body, #root { height: 100%; }

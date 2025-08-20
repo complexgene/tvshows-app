@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tvshows-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CORS_ALLOWED_ORIGINS=http://localhost:3000
+      - TVTITLES_PATH=/data/tvtitles.txt
+      - APP_AUTO_IMPORT_ON_STARTUP=true
+    volumes:
+      - ./backend/src/main/resources/tvtitles.txt:/data/tvtitles.txt:ro
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tvshows-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8080
+    depends_on:
+      - backend
