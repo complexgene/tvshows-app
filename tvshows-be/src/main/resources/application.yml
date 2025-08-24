@@ -41,3 +41,10 @@ springdoc:
   api-docs:
     path: /api-docs
 
+
+resilience4j.ratelimiter:
+  instances:
+    tvShowService:
+      limitForPeriod: 2
+      limitRefreshPeriod: 5s
+      timeoutDuration: 0

@@ -4,10 +4,9 @@ import com.avatarconnex.tvshowsbe.models.AppResponse;
 import com.avatarconnex.tvshowsbe.models.ShowListItemDto;
 import com.avatarconnex.tvshowsbe.models.TVShowDetails;
 import com.avatarconnex.tvshowsbe.service.TVShowService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,12 +26,14 @@ public class TVShowController {
 
     @GetMapping("/all")
     @Operation(summary = "[Non-Paginated] List all TV Shows", description = "Fetches non-paginated list of TV shows")
+    @RateLimiter(name = "tvShowService")
     public List<TVShowDetails> getAllTvShows() {
         return tvShowService.fetchAllTvShows();
     }
 
     @GetMapping("/paged")
     @Operation(summary = "[Paginated] List all TV Shows", description = "Paginated list of TV shows available in the system")
+    @RateLimiter(name = "tvShowService")
     public ResponseEntity<Page<ShowListItemDto>> getAllTvShowsPaged(
             @PageableDefault(size = 20, sort = "name", direction = Sort.Direction.ASC) Pageable pageable) {
         Page<ShowListItemDto> tvShows = tvShowService.fetchAllTVShows(pageable);
@@ -48,6 +49,7 @@ public class TVShowController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get TV Show by ID", description = "Fetch details of a TV show using its ID")
+    @RateLimiter(name = "tvShowService")
     public ResponseEntity<TVShowDetails> getTvShowById(@PathVariable("id") Long showId) {
         TVShowDetails tvShowDetails = tvShowService.fetchShowDetail(showId);
         return ResponseEntity.ok(tvShowDetails);

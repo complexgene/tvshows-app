@@ -7,6 +7,10 @@ public class TvShowExternalDataFetchException extends RuntimeException {
         super(message);
     }
 
+    public TvShowExternalDataFetchException(ErrorCodes errorCode) {
+        super(errorCode.getErrorDesc());
+    }
+
     public TvShowExternalDataFetchException(ErrorCodes errorCodes, Throwable throwable) {
         super(errorCodes.getErrorDesc());
     }

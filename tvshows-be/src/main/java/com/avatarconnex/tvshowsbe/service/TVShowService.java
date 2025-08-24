@@ -10,7 +10,6 @@ import com.avatarconnex.tvshowsbe.models.TVShowDetails;
 import com.avatarconnex.tvshowsbe.repository.TVShowRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -109,6 +108,8 @@ public class TVShowService {
     }
 
     public TVShowDetails fetchShowDetail(Long showId) {
-        return repository.findById(showId).get();
+        return repository.findById(showId).orElseThrow(
+                () -> new TvShowExternalDataFetchException(ErrorCodes.ER404)
+        );
     }
 }

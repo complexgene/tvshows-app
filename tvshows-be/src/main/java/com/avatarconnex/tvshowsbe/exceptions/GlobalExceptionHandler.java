@@ -1,6 +1,8 @@
 package com.avatarconnex.tvshowsbe.exceptions;
 
+import com.avatarconnex.tvshowsbe.models.AppResponse;
 import com.avatarconnex.tvshowsbe.models.ErrorResponse;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -39,6 +41,16 @@ public class GlobalExceptionHandler {
                         .errorType(ex.getClass().getSimpleName())
                         .path(request.getRequestURI())
                         .timestamp(System.currentTimeMillis())
+                        .build());
+    }
+
+    @ExceptionHandler(RequestNotPermitted.class)
+    public ResponseEntity<AppResponse> handleRateLimit(RequestNotPermitted ex) {
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .body(AppResponse.builder()
+                        .status("error")
+                        .code(HttpStatus.NOT_ACCEPTABLE)
+                        .message("Too many requests. Please try again shortly.")
                         .build());
     }
 }
